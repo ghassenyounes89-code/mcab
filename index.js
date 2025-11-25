@@ -31,12 +31,19 @@ if (process.env.CLOUDINARY_CLOUD_NAME && process.env.CLOUDINARY_API_KEY && proce
   console.log('❌ Cloudinary configuration incomplete');
 }
 
-// Enhanced CORS configuration
+// BACKEND - Corrigez comme ça :
 app.use(cors({
-  origin: ["http://localhost:5173", "http://localhost:5174", "http://127.0.0.1:5173", "http://localhost:3000","https://mcashop.netlify.app/"],
+  origin: [
+    "http://localhost:5173", 
+    "http://localhost:5174", 
+    "http://127.0.0.1:5173", 
+    "http://localhost:3000",
+    "https://mcashop.netlify.app", // Enlevez le slash final
+    "https://mcashop.netlify.app"  // Ajoutez aussi sans www si nécessaire
+  ],
   credentials: true,
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-  allowedHeaders: ["Content-Type", "Authorization"]
+  allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With"]
 }));
 
 app.use(express.json());
